@@ -4,19 +4,19 @@
 
 ```sh
 docker-compose build
-docker-compose run --rm python
+docker-compose run --rm python-course
 ```
 
 ## Запуск тестов
 
 ```sh
-docker-compose run --rm python coverage run -m pytest
+docker-compose run --rm python-course pytest
 ```
 
 ## Запуск линтеров
 
 ```sh
-docker-compose run --rm python bash -c "black --check . && mypy . && flake8"
+docker-compose run --rm python-course bash -c "black --check . && mypy . && flake8"
 ```
 
 ## Задача
@@ -31,6 +31,6 @@ docker-compose run --rm python bash -c "black --check . && mypy . && flake8"
 
   Далее для каждой из задач реализовать недостающие методы так, чтобы все тесты проходили. Дополнительную информацию можно найти в комментарии к тесту.
 
-  Проверять можно запуская `docker-compose run --rm python coverage run -m pytest`
+  Проверять можно запуская `docker-compose run --rm python-course coverage run -m pytest`
 
 3. После того как все тесты проходят, нужно создать pull request в своем репозитори в `main` и отправить на ревью.

@@ -7,6 +7,14 @@ class TestListExercise:
         replaced_list = ListExercise.replace(input_list)
         assert replaced_list == [100, 100, -8, 100, 100, -6, 100, 100, -99]
 
+        input_list = [-1, -2, -3, -4]
+        replaced_list = ListExercise.replace(input_list)
+        assert replaced_list == []
+
+        input_list = []
+        replaced_list = ListExercise.replace(input_list)
+        assert replaced_list == []
+
     def test_search(self) -> None:
         assert ListExercise.search([1], 900) == -1
         assert ListExercise.search([1], 1) == 0

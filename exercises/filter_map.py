@@ -1,9 +1,9 @@
-from typing import Callable
+from typing import Any, Callable, List, Tuple
 
 
 class FilterMapExercise:
     @staticmethod
-    def filter_map(func: Callable, input_array: list) -> list:
+    def filter_map(func: Callable[[Any], Tuple[bool, Any]], input_array: List[Any]) -> List[Any]:
         """
         Реализовать функцию, которая ведет себя как filter и map. К каждому значению из
         списка применяется функция, которая в ответ возвращает кортеж
