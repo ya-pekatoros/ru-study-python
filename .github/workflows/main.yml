@@ -1,0 +1,11 @@
+name: CheckAll
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run linters & tests
+        run: docker-compose run --rm python-course make check
