@@ -16,7 +16,7 @@ docker-compose run --rm python-course pytest
 ## Запуск линтеров
 
 ```sh
-docker-compose run --rm python-course bash -c "black --check . && mypy . && flake8"
+docker-compose run --rm python-course make check
 ```
 
 ## Задача
