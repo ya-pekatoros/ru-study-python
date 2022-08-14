@@ -13,7 +13,6 @@ class TestMapExercise:
         return list_of_movies
 
     def test_rating(self, list_of_movies: list[dict]) -> None:
-        print(list_of_movies)
         average_rating = MapExercise.rating(list_of_movies)
         assert round(average_rating, 15) == 6.809410385259628
 
