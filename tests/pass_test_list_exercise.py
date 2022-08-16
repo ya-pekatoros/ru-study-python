@@ -9,7 +9,7 @@ class TestListExercise:
 
         input_list = [-1, -2, -3, -4]
         replaced_list = ListExercise.replace(input_list)
-        assert replaced_list == []
+        assert replaced_list == [-1, -2, -3, -4]
 
         input_list = []
         replaced_list = ListExercise.replace(input_list)
