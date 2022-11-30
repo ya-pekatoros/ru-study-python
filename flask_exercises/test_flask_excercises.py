@@ -29,9 +29,9 @@ class TestFlaskExercise:
         assert response.status_code == HTTPStatus.OK
         return response.get_json()
 
-    def update_user(self, user_data: dict) -> dict:
+    def update_user(self, user_name: str, user_data: dict) -> dict:
         response = self.flask_client.patch(
-            f"user/{user_data['username']}",
+            f"user/{user_name}",
             data=json.dumps(user_data),
             content_type="application/json",
         )
@@ -65,14 +65,14 @@ class TestFlaskExercise:
         self.create_user({"name": "Heisenberg"})
         response = self.retrieve_user("Heisenberg")
 
-        assert response == {"data": {"My name is Heisenberg"}}
+        assert response == {"data": "My name is Heisenberg"}
 
     @pytest.mark.skip
     def test_update(self) -> None:
         self.create_user({"name": "Heisenberg"})
 
-        response = self.update_user({"name": "Jesse"})
-        assert response == {"data": {"My name is Jesse"}}
+        response = self.update_user("Heisenberg", {"name": "Jesse"})
+        assert response == {"data": "My name is Jesse"}
 
     @pytest.mark.skip
     def test_delete(self) -> None:

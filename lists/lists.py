@@ -17,7 +17,7 @@ class ListExercise:
         Функция должна возвращать индекс элемента
 
         :param input_list: Исходный список
-        :param query:
+        :param query: Искомый элемент
         :return: Номер элемента
         """
         pass
