@@ -1,5 +1,3 @@
-import pytest
-
 from .lists import ListExercise
 
 
@@ -17,7 +15,6 @@ class TestListExercise:
         replaced_list = ListExercise.replace(input_list)
         assert replaced_list == []
 
-    @pytest.mark.skip(reason="ListExercise.search is not implemented")
     def test_search(self) -> None:
         assert ListExercise.search([1], 900) == -1
         assert ListExercise.search([1], 1) == 0
