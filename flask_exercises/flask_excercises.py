@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import Flask, request
+import json
 
 
 class FlaskExercise:
@@ -28,4 +29,52 @@ class FlaskExercise:
 
     @staticmethod
     def configure_routes(app: Flask) -> None:
-        pass
+        users = {}
+
+        @app.route(
+            "/user",
+            methods=[
+                "POST",
+            ],
+        )
+        def create_user():  # type: ignore
+            user_name = request.get_json().get("name")
+            if user_name:
+                users[user_name] = {}
+                data = {"data": f"User {user_name} is created!"}
+                response = app.response_class(
+                    response=json.dumps(data), status=201, mimetype="application/json"
+                )
+                return response
+            data = {"errors": {"name": "This field is required"}}
+            response = app.response_class(
+                response=json.dumps(data), status=422, mimetype="application/json"
+            )
+            return response
+
+        @app.route("/user/<name>", methods=["GET", "PATCH", "DELETE"])
+        def user(name):  # type: ignore
+            if request.method == "GET":
+                if name in users:
+                    data = {"data": f"My name is {name}"}
+                    response = app.response_class(
+                        response=json.dumps(data), status=200, mimetype="application/json"
+                    )
+                    return response
+                return "Not found", 404
+            if request.method == "PATCH":
+                if name in users:
+                    new_user_name = request.get_json().get("name")
+                    users[new_user_name] = users[name]
+                    del users[name]
+                    data = {"data": f"My name is {new_user_name}"}
+                    response = app.response_class(
+                        response=json.dumps(data), status=200, mimetype="application/json"
+                    )
+                    return response
+                return "Not found", 404
+            if request.method == "DELETE":
+                if name in users:
+                    del users[name]
+                    return "Sucess deleting", 204
+                return "Not found", 404
