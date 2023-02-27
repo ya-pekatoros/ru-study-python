@@ -41,7 +41,7 @@ class ListExercise:
             else:
                 return 0
         else:
-            middle_index = round(len(input_list) / 2)
+            middle_index = len(input_list) // 2
 
         if input_list[middle_index] > query:
             elem_subindex = ListExercise.search(input_list[:middle_index], query)
