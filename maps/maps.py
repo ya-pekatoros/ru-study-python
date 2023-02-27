@@ -15,7 +15,7 @@ class MapExercise:
         """
 
         def get_rating(movie: dict) -> Union[float, None]:
-            if len(movie["country"].split(",")) > 1:
+            if movie["country"].count(",") >= 1:
                 if movie["rating_kinopoisk"]:
                     return float(movie["rating_kinopoisk"])
             return None
@@ -40,11 +40,7 @@ class MapExercise:
         """
 
         def get_letters_number(movie: dict) -> int:
-            count = 0
-            for letter in movie["name"]:
-                if letter == "и":
-                    count += 1
-            return count
+            return movie["name"].count("и")
 
         movies_rated = filter(
             lambda movie: float(movie["rating_kinopoisk"]) >= rating
