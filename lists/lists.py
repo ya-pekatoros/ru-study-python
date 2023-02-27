@@ -45,8 +45,6 @@ class ListExercise:
 
         if input_list[middle_index] > query:
             elem_subindex = ListExercise.search(input_list[:middle_index], query)
-            if elem_subindex == -1:
-                return -1
             return elem_subindex
 
         elif input_list[middle_index] < query:
