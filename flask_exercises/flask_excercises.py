@@ -52,29 +52,47 @@ class FlaskExercise:
             )
             return response
 
-        @app.route("/user/<name>", methods=["GET", "PATCH", "DELETE"])
-        def user(name):  # type: ignore
-            if request.method == "GET":
-                if name in users:
-                    data = {"data": f"My name is {name}"}
-                    response = app.response_class(
-                        response=json.dumps(data), status=200, mimetype="application/json"
-                    )
-                    return response
-                return "Not found", 404
-            if request.method == "PATCH":
-                if name in users:
-                    new_user_name = request.get_json().get("name")
-                    users[new_user_name] = users[name]
-                    del users[name]
-                    data = {"data": f"My name is {new_user_name}"}
-                    response = app.response_class(
-                        response=json.dumps(data), status=200, mimetype="application/json"
-                    )
-                    return response
-                return "Not found", 404
-            if request.method == "DELETE":
-                if name in users:
-                    del users[name]
-                    return "Sucess deleting", 204
-                return "Not found", 404
+        @app.route(
+            "/user/<name>",
+            methods=[
+                "GET",
+            ],
+        )
+        def get_user(name):  # type: ignore
+            if name in users:
+                data = {"data": f"My name is {name}"}
+                response = app.response_class(
+                    response=json.dumps(data), status=200, mimetype="application/json"
+                )
+                return response
+            return "Not found", 404
+
+        @app.route(
+            "/user/<name>",
+            methods=[
+                "PATCH",
+            ],
+        )
+        def edit_user(name):  # type: ignore
+            if name in users:
+                new_user_name = request.get_json().get("name")
+                users[new_user_name] = users[name]
+                del users[name]
+                data = {"data": f"My name is {new_user_name}"}
+                response = app.response_class(
+                    response=json.dumps(data), status=200, mimetype="application/json"
+                )
+                return response
+            return "Not found", 404
+
+        @app.route(
+            "/user/<name>",
+            methods=[
+                "DELETE",
+            ],
+        )
+        def delete_user(name):  # type: ignore
+            if name in users:
+                del users[name]
+                return "Sucess deleting", 204
+            return "Not found", 404
