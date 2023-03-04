@@ -14,12 +14,10 @@ class TestMapExercise:
             list_of_movies = list(DictReader(movies))
         return list_of_movies
 
-    @pytest.mark.skip(reason="MapExercise.rating is not implemented")
     def test_rating(self, list_of_movies: list[dict]) -> None:
         average_rating = MapExercise.rating(list_of_movies)
         assert round(average_rating, 15) == 6.809410385259628
 
-    @pytest.mark.skip(reason="MapExercise.chars_count is not implemented")
     def test_chars_count(self, list_of_movies: list[dict]) -> None:
         chars_count = MapExercise.chars_count(list_of_movies, 5)
         assert chars_count == 3850
