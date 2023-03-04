@@ -6,7 +6,7 @@ lint:
 	mypy --sqlite-cache .
 
 test:
-	pytest
+	pytest -v
 
 check: lint test
 
